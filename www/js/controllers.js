@@ -2,7 +2,8 @@ angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
-  // With the new view caching in Ionic, Controllers are only called
+
+    // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
   // listen for the $ionicView.enter event:
@@ -39,18 +40,24 @@ angular.module('starter.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
+  // console.log("apps Ctrl");
 })
 
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [
-    { title: 'Reggae', id: 1 },
+    { title: 'second time', id: 1 },
     { title: 'Chill', id: 2 },
     { title: 'Dubstep', id: 3 },
     { title: 'Indie', id: 4 },
     { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
+    { title: 'Cowbell', id: 6 },
+    { title: 'new data frsecond time', id: 7 }
   ];
+  console.log("Playlists Ctrl");
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
+$scope.dynamicViewFromStateparam = $stateParams.id;
+// console.log($scope.dynamicViewFromStateparam);
+// console.log("Playlist Ctrl");
 });

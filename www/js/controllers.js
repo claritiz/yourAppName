@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('yourAppsName.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -43,21 +43,73 @@ angular.module('starter.controllers', [])
   // console.log("apps Ctrl");
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'second time', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 },
-    { title: 'new data frsecond time', id: 7 }
-  ];
-  console.log("Playlists Ctrl");
-})
+// .controller('PlaylistsCtrl', function($scope) {
+//   $scope.playlists = [
+//     { title: 'second time', id: 1 },
+//     { title: 'Chill', id: 2 },
+//     { title: 'Dubstep', id: 3 },
+//     { title: 'Indie', id: 4 },
+//     { title: 'Rap', id: 5 },
+//     { title: 'Cowbell', id: 6 },
+//     { title: 'new data frsecond time', id: 7 }
+//   ];
+//   console.log("Playlists Ctrl");
+// })
+//
+// .controller('PlaylistCtrl', function($scope, $stateParams) {
+// $scope.dynamicViewFromStateparam = $stateParams.id;
+// // console.log($scope.dynamicViewFromStateparam);
+// // console.log("Playlist Ctrl");
+// });
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-$scope.dynamicViewFromStateparam = $stateParams.id;
-// console.log($scope.dynamicViewFromStateparam);
-// console.log("Playlist Ctrl");
+// .controller('myStocksCtrl', function($scope) {
+//   $scope.playlists = [
+//     { title: 'second time', id: 1 },
+//     { title: 'Chill', id: 2 },
+//     { title: 'Dubstep', id: 3 },
+//     { title: 'Indie', id: 4 },
+//     { title: 'Rap', id: 5 },
+//     { title: 'Cowbell', id: 6 },
+//     { title: 'new data frsecond time', id: 7 }
+//   ];
+//   // console.log("Playlists Ctrl");
+// })
+
+
+.controller('myStocksCtrl', ['$scope',
+function($scope) {
+  $scope.myStocksArray = [
+    { ticker: "AAPL"},
+    { ticker: "GPRO"},
+    { ticker: "FB"},
+    { ticker: "INTC"},
+    { ticker: "MSFT"},
+    { ticker: "GE"},
+    { ticker: "C"}
+  ];
+  // console.log("Playlists Ctrl");
+}])
+
+// .controller('StockCtrl', function($scope, $stateParams) {
+// // $scope.dynamicViewFromStateparam = $stateParams.id;
+// // console.log($scope.dynamicViewFromStateparam);
+// // console.log("Playlist Ctrl");
+// $scope.ticker = $stateParams.stockTicker;
+// });
+.controller('StockCtrl', ['$scope', '$stateParams', '$http', 'stockDataService',
+function($scope, $stateParams , $http, stockDataService) {
+  $scope.ticker = $stateParams.stockTicker;
+
+
+     var promise = stockDataService.getPriceData($scope.ticker);
+  promise.then(function(data) {
+console.log(data);
 });
+
+  // // http://finance.yahoo.com/webservice/v1/symbols/YHOO/quote?format=json&view=detail
+  //
+  // $http.get("http://finance.yahoo.com/webservice/v1/symbols/YHOO/quote?format=json&view=detail")
+  // .then(function(jsonData) {
+  //   console.log(jsonData.data.list.resources[0].resource.fields);
+  // });
+}]);
